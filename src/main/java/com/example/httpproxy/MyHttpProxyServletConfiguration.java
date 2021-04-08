@@ -23,4 +23,13 @@ public class MyHttpProxyServletConfiguration {
     servletRegistrationBean.addInitParameter(ProxyServlet.P_LOG, logging_enabled);
     return servletRegistrationBean;
   }
+
+  @Bean("servletRegistrationBean1")
+  public ServletRegistrationBean servletRegistrationBean1(){
+    ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new MyHttpProxyServlet(), "/api/*");
+    //这个targetUrl没有什么作用，中间换掉了
+    servletRegistrationBean.addInitParameter("targetUri", "https://www.baidu.com");
+    servletRegistrationBean.addInitParameter(ProxyServlet.P_LOG, logging_enabled);
+    return servletRegistrationBean;
+  }
 }
